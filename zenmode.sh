@@ -111,15 +111,15 @@ case "$1" in
 		sudo ln -s "$base/$file" $target
 		;;
 	*)
-		echo -e "Usage: zenmode [options]"
-	    echo -e "  Options available:"
-		echo -e "    start   (-s)           : Start Zen Mode"
-		echo -e "    stop    (-k)           : Stop Zen Mode"
-		echo -e "    restart (-r) reload    : Restart Zen Mode"
-		echo -e "    allow   (-a) <website> : Enable access to the specified website domain"
-		echo -e "    deny    (-d) <website> : Deny access to the specified website domain"
-		echo -e "    list    (-l)           : Print the denial list"	
-		echo -e "    install (--short)      : Install ZenMode (--short installs under the name \"zm\")"
+		echo "Usage: zenmode [options]"
+	    echo "  Options available:"
+		echo "    start   (-s)           : Start Zen Mode"
+		echo "    stop    (-k)           : Stop Zen Mode"
+		echo "    restart (-r) reload    : Restart Zen Mode"
+		echo "    allow   (-a) <website> : Enable access to the specified website domain"
+		echo "    deny    (-d) <website> : Deny access to the specified website domain"
+		echo "    list    (-l)           : Print the denial list"	
+		echo "    install (--short)      : Install ZenMode (--short installs under the name \"zm\")"
 		echo
 		exit 1
 		;;
