@@ -111,16 +111,15 @@ case "$1" in
 		sudo ln -s "$base/$file" $target
 		;;
 	*)
-		echo -e "Usage: \e[1;31mzenmode \e[1;34m[options]\e[0m"
-		echo
-	        echo -e "\e[1;34mOptions\e[0m available : "
-		echo -e "\e[1;32mstart \e[1;36m(-s)\e[0m : Start Zen Mode"
-		echo -e "\e[1;32mstop \e[1;36m(-k)\e[0m : Stop Zen Mode"
-		echo -e "\e[1;32mrestart \e[1;36m(-r)\e[1;32m / reload \e[0m: Restart Zen Mode"
-		echo -e "\e[1;32mallow \e[1;36m(-a) \e[1;31m<website>\e[0m : Enable access to the specified website domain"
-		echo -e "\e[1;32mdeny \e[1;36m(-d) \e[1;31m<website>\e[0m : Deny access to the specified website domain"
-		echo -e "\e[1;32mlist \e[1;36m(-l)\e[0m : Print the denial list"	
-		echo -e "\e[1;32minstall \e[1;36m(--short)\e[0m : Install ZenMode (--short installs under the name \"zm\")"
+		echo -e "Usage: zenmode [options]"
+	    echo -e "  Options available:"
+		echo -e "    start   (-s)           : Start Zen Mode"
+		echo -e "    stop    (-k)           : Stop Zen Mode"
+		echo -e "    restart (-r) reload    : Restart Zen Mode"
+		echo -e "    allow   (-a) <website> : Enable access to the specified website domain"
+		echo -e "    deny    (-d) <website> : Deny access to the specified website domain"
+		echo -e "    list    (-l)           : Print the denial list"	
+		echo -e "    install (--short)      : Install ZenMode (--short installs under the name \"zm\")"
 		echo
 		exit 1
 		;;
