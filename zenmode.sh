@@ -5,7 +5,7 @@ add="127.0.0.1	"
 scriptname=$(readlink "$0")
 base="$(cd -P "$(dirname "$scriptname")" && pwd)" 
 flush_cache() {
-	( sudo service nscd restart || sudo dscacheutil -flushcache || ( echo "Could not flush DNS cache" 1>&2 ) ) > /dev/null 2>/dev/null
+	( ( sudo service nscd restart || sudo dscacheutil -flushcache ) > /dev/null 2>/dev/null ) || ( echo "Could not flush DNS cache" 1>&2 )
 }
 stop_zen()	{
 	echo "Stopping zen mode ..."
