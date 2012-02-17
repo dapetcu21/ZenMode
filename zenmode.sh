@@ -4,6 +4,9 @@ target=""
 add="127.0.0.1	"
 scriptname=$(readlink "$0")
 base="$(cd -P "$(dirname "$scriptname")" && pwd)" 
+flush_cache() {
+	( sudo service nscd restart || sudo dscacheutil -flushcache || ( echo "Could not flush DNS cache" 1>&2 ) ) > /dev/null 2>/dev/null
+}
 stop_zen()	{
 	echo "Stopping zen mode ..."
 
@@ -11,6 +14,8 @@ stop_zen()	{
 	sudo rm /etc/.hosts
 	
 	aux=$(echo -e $target | sudo tee /etc/hosts)
+
+	flush_cache
 }
 start_zen()	{
 	echo "Starting zen mode ..."
@@ -22,6 +27,8 @@ start_zen()	{
 	aux=$(echo -e $target | sudo tee /etc/.hosts)
 	target="$target\n$add"
 	aux=$(echo -e $target | sudo tee /etc/hosts)
+	
+	flush_cache
 }
 read_file()	{
 	c=""
@@ -169,6 +176,9 @@ case "$1" in
 		done
 		echo
 		;;
+	flush|-f)
+		flush_cache
+		;;
 	clean|-c)
 		clean
 		;;
@@ -188,6 +198,7 @@ case "$1" in
 		echo -e "\033[1;32mremovewatch \033[1;36m(removeWatch|-rw)\033[0m : Remove the application to the watch list."
 		echo -e "\033[1;32mlistwatches \033[1;36m(listWatches|-lw)\033[0m : Print the watch list."
 		echo -e "\033[1;32mclean \033[1;36m(-c)\033[0m : Clean the cache."
+		echo -e "\033[1;32mflush \033[1;36m(-f)\033[0m : Flush the system DNS cache."
 		echo
 		exit 1
 		;;
