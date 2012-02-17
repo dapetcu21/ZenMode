@@ -84,7 +84,7 @@ clean(){
 case "$1" in
 	start|-s)
 		if [[ -a /etc/.hosts ]]; then
-			echo "Zen mode already started"
+			echo "Zen mode already started" 1>&2
 		else
 			start_zen
 		fi
@@ -93,7 +93,7 @@ case "$1" in
 		if [[ -a /etc/.hosts ]]; then
 			stop_zen
 		else
-			echo "Zen mode already stopped"
+			echo "Zen mode already stopped" 1>&2
 		fi
 		;;
 	restart|reload|-r)
@@ -104,14 +104,14 @@ case "$1" in
 		if [ -a "$base/denials/$2" ]; then 
 			rm "$base/denials/$2"
 		else 
-			echo "Website not denied!"
+			echo "Website not denied!" 1>&2
 			exit 1
 		fi
 		[[ -a /etc/.hosts ]] && stop_zen && start_zen
 		;;
 	deny|-d)
 		if [ -a "$base/denials/$2" ]; then
-			echo "Website already denied!"
+			echo "Website already denied!" 1>&2
 			exit 1
 		else
 			touch "$base/denials/$2"
@@ -153,7 +153,7 @@ case "$1" in
 		;;
 	addwatch|addWatch|-aw)
 		if [ -a "$base/watches/$2" ]; then
-			echo "Watch already listed!"
+			echo "Watch already listed!" 1>&2
 			exit 1
 		else
 			touch "$base/watches/$2"
@@ -163,7 +163,7 @@ case "$1" in
 		if [ -a "$base/watches/$2" ]; then
 			rm "$base/watches/$2"
 		else
-			echo "Watch does not exist!"
+			echo "Watch does not exist!" 1>&2
 			exit 1
 		fi
 		;;
